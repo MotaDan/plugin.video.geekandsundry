@@ -236,11 +236,11 @@ def showVideoURL(url):
 
         # Get all the script and iframe tags in this wrapper and check for the one which has the brightcove player script
         scripts = vidDiv.find_all(['script', 'iframe'])
-        checkForBrightcovePlayer = lambda script: script.get("src") and script.get("src").startswith("//players.brightcove.net")
+        checkForBrightcovePlayer = lambda script: script.get("src") and script.get("src").startswith("https://players.brightcove.net")
         vidScript = filter(checkForBrightcovePlayer, scripts)[0]
 
         if vidScript and vidScript.get('src'):
-            src = 'http:' + vidScript.get('src')
+            src = vidScript.get('src')
 
             if vidScript.name == 'iframe':
                 ID = re.search("videoId=([^&']+)", src).group(1)
